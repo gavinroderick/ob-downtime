@@ -1,10 +1,10 @@
-import { Downtime } from "./Downtime";
+import { Downtime } from "../types/Downtime";
 
 export interface TableProps {
   downtimes: Downtime[];
 }
 
-export default function Table({ downtimes }: TableProps) {
+export default function DowntimeTable({ downtimes }: TableProps) {
   return (
     <div className="mt-5 relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-slate-300">
@@ -29,8 +29,11 @@ export default function Table({ downtimes }: TableProps) {
           </tr>
         </thead>
         <tbody>
-          {downtimes.map((downtime) => (
-            <tr className="odd:bg-white odd:dark:bg-gray-700 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+          {downtimes.map((downtime, index) => (
+            <tr
+              key={index}
+              className="odd:bg-white odd:dark:bg-gray-700 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+            >
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

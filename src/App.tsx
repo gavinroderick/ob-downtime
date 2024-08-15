@@ -1,44 +1,26 @@
-import { Downtime } from "./components/Downtime";
+import { useEffect, useState } from "react";
 import { DowntimeSection } from "./components/DowntimeSection";
+import { fetchDowntime, fetchUpcomingDowntime } from "./server/fetch-downtime";
+import { Downtime } from "./types/Downtime";
 
 function App() {
-  const downtimes: Downtime[] = [
-    {
-      provider: "Lloyds Bank",
-      status: "Ongoing",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "",
-      affectedApis: "AIS",
-    },
-    {
-      provider: "HSBC",
-      status: "Ongoing",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "",
-      affectedApis: "AIS",
-    },
-  ];
+  const [downtime, setDowntime] = useState<Downtime[]>([]);
+  const [upcomingDowntime, setUpcomingDowntime] = useState<Downtime[]>([]);
 
-  const upcomingDowntime: Downtime[] = [
-    {
-      provider: "Lloyds Bank",
-      status: "Ongoing",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "",
-      affectedApis: "AIS",
-    },
-    {
-      provider: "HSBC",
-      status: "Ongoing",
-      startDate: new Date(),
-      endDate: new Date(),
-      link: "",
-      affectedApis: "AIS",
-    },
-  ];
+  useEffect(() => {
+    async function getDowntime() {
+      const data = await fetchDowntime();
+      setDowntime(data);
+    }
+
+    async function getUpcomingDowntime() {
+      const data = await fetchUpcomingDowntime();
+      setUpcomingDowntime(data);
+    }
+
+    getDowntime();
+    getUpcomingDowntime();
+  }, []);
 
   return (
     <>
@@ -49,16 +31,19 @@ function App() {
           </h1>
         </header>
         <main className="mt-10 mx-32 flex-grow">
-          <DowntimeSection title={"Current Downtime"} downtimes={downtimes} />
+          <DowntimeSection title={"Current Downtime"} downtimes={downtime} />
           <DowntimeSection
             title={"Upcoming Downtime"}
             downtimes={upcomingDowntime}
           />
         </main>
         <footer className="mb-10 text-slate-900 dark:text-slate-50 text-center">
-          <p className="text-s hover:text-slate-700 dark:hover:text-slate-500">
+          <a
+            className="text-s hover:drop-shadow-lg hover:text-slate-500  dark:hover:text-slate-500"
+            href="https://github.com/gavinroderick"
+          >
             Made with ☕️ by thingsgavdoes
-          </p>
+          </a>
         </footer>
       </div>
     </>
