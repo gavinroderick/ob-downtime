@@ -25,6 +25,9 @@ export default function DowntimeTable({ downtimes }: TableProps) {
             <th scope="col" className="px-6 py-3">
               End
             </th>
+            <th scope="col" className="px-6 py-3">
+              Created
+            </th>
             <th scope="col" className="px-6 py-3"></th>
           </tr>
         </thead>
@@ -40,10 +43,11 @@ export default function DowntimeTable({ downtimes }: TableProps) {
               >
                 {downtime.provider}
               </th>
-              <td className="px-6 py-4">{downtime.affectedApis.join(", ")}</td>
               <td className="px-6 py-4">{downtime.status}</td>
+              <td className="px-6 py-4">{downtime.affectedApis.join(", ")}</td>
               <td className="px-6 py-4">{downtime.startDate}</td>
               <td className="px-6 py-4">{downtime.endDate}</td>
+              <td className="px-6 py-4">{downtime.createdDate}</td>
               <td className="px-6 py-4">
                 <a
                   href={downtime.link}
