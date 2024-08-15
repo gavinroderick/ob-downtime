@@ -14,6 +14,7 @@ type ObjectValues<T> = T[keyof T];
 export const API = {
   AIS: "AIS",
   PIS: "PIS",
+  Other: "Other",
 } as const;
 export type Api = ObjectValues<typeof API>;
 

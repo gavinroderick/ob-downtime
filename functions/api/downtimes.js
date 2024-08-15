@@ -29,7 +29,6 @@ export async function onRequest(context) {
 
   const cleaned = {};
   for (const [key, value] of Object.entries(downtimesByObieTicketRef)) {
-    console.log(value);
     stupidHackForThisTicketNumber(key, value, cleaned);
     cleaned[key] = value.filter((x) => x);
   }

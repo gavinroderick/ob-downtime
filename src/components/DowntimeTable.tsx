@@ -1,4 +1,6 @@
 import { Downtime } from "../types/Downtime";
+import { AffectedApis } from "./AffectedApis";
+import StatusPill from "./StatusPill";
 
 export interface TableProps {
   downtimes: Downtime[];
@@ -43,8 +45,12 @@ export default function DowntimeTable({ downtimes }: TableProps) {
               >
                 {downtime.provider}
               </th>
-              <td className="px-6 py-4">{downtime.status}</td>
-              <td className="px-6 py-4">{downtime.affectedApis.join(", ")}</td>
+              <td className="px-6 py-4">
+                <StatusPill status={downtime.status} />
+              </td>
+              <td className="px-6 py-4">
+                <AffectedApis apis={downtime.affectedApis} />
+              </td>
               <td className="px-6 py-4">{downtime.startDate}</td>
               <td className="px-6 py-4">{downtime.endDate}</td>
               <td className="px-6 py-4">{downtime.createdDate}</td>
