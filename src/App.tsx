@@ -32,7 +32,7 @@ function App() {
             downtimes={upcomingDowntime}
           />
         </main>
-        <footer className="mb-10 text-slate-900 dark:text-slate-50 text-center">
+        <footer className="my-10 text-slate-900 dark:text-slate-50 text-center">
           <a
             className="text-s hover:drop-shadow-lg hover:text-slate-500  dark:hover:text-slate-500"
             href="https://github.com/gavinroderick"
