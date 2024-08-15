@@ -1,50 +1,16 @@
-# React + TypeScript + Vite
+# Open Banking Downtime Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Honestly, just an excuse to play around with CloudFlare pages & workers.
 
-Currently, two official plugins are available:
+If I tidy things up a bit, this _could_ be a useful page for anybody working in the TPP space. Reads from the publicly available [Open Banking API Downtime](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/441614754/API+Downtime) page on Confluence, & formats it on a page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### MVP
 
-## Expanding the ESLint configuration
+> Single webpage that displays current & future OB downtime correctly
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Future Roadmap
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- 💡 map provider names nicely & include a logo
+- 💡 figure out a less brittle way of ingesting data
+  - (WASM worker with better HTML parsing? 👀)
+- 💡 move to an async data fetch from source table
