@@ -10,6 +10,7 @@ function App() {
   useEffect(() => {
     async function getDowntime() {
       const data = await fetchDowntime();
+      console.log(data);
       setDowntime(data);
     }
 

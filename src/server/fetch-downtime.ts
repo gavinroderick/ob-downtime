@@ -1,8 +1,9 @@
 import { Downtime } from "../types/Downtime";
-import { downtimes } from "./dummy-data";
 
-export async function fetchDowntime(): Promise<Downtime[]> {
-  return downtimes;
+export async function fetchDowntime(): Promise<any[]> {
+  var resp = await fetch("/api/downtimes");
+  var downtime = await resp.json();
+  return downtime;
 }
 
 export async function fetchUpcomingDowntime(): Promise<Downtime[]> {
