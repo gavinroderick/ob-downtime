@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { fetchDowntime } from "./bff/fetchDowntime";
 import { DowntimeSection } from "./components/DowntimeSection";
-import { fetchDowntime, fetchUpcomingDowntime } from "./server/fetch-downtime";
-import { Downtime } from "./types/Downtime";
+import { Downtime, STATUS } from "./types/Downtime";
 
 function App() {
   const [downtime, setDowntime] = useState<Downtime[]>([]);
@@ -11,16 +11,10 @@ function App() {
     async function getDowntime() {
       const data = await fetchDowntime();
       console.log(data);
-      setDowntime(data);
+      setDowntime(data.filter((x) => x.status === STATUS.Active));
+      setUpcomingDowntime(data.filter((x) => x.status === STATUS.Planned));
     }
-
-    async function getUpcomingDowntime() {
-      const data = await fetchUpcomingDowntime();
-      setUpcomingDowntime(data);
-    }
-
     getDowntime();
-    getUpcomingDowntime();
   }, []);
 
   return (
