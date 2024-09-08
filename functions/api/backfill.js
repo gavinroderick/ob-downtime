@@ -30,7 +30,7 @@ function mapBatchToTickets(issues) {
 }
 
 function mapIssueToTicket(issue) {
-  const issue = {
+  const mappedIssue = {
     key: issue.key,
     summary: issue.fields.summary,
     status: issue.fields.status.name,
@@ -45,7 +45,8 @@ function mapIssueToTicket(issue) {
     updated: issue.fields.updated,
     affectedApis: issue.fields.description.customfield_11872.value,
   };
-  console.log(issue);
+  console.log(mappedIssue);
+  return mappedIssue;
 }
 
 function mapProviderToProviderGroup() {
