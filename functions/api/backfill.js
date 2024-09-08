@@ -74,5 +74,5 @@ async function buildFetchParams(startIndex = 0) {
     ],
   };
 
-  return { mehod: "POST", body: body };
+  return { method: "POST", body: body };
 }
